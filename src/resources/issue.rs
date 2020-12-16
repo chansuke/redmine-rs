@@ -1,5 +1,5 @@
-use crate::redmine::common_field::CommonField;
-use crate::redmine::custom_field::CustomField;
+use crate::resources::common_field::CommonField;
+use crate::resources::custom_field::CustomField;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]

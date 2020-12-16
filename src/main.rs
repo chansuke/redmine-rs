@@ -1,9 +1,9 @@
 mod cli;
 mod config;
-mod redmine;
+mod resources;
 mod utils;
 
-use redmine::issue::Issue;
+use resources::issue::Issue;
 
 use crate::cli::Cli;
 

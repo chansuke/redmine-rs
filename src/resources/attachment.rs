@@ -1,4 +1,4 @@
-use crate::redmine::common_field::CommonField;
+use crate::resources::common_field::CommonField;
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]

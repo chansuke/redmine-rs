@@ -1,4 +1,4 @@
-use crate::redmine::issue::Issue;
+use crate::resources::issue::Issue;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
