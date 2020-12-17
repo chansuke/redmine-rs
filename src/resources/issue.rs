@@ -2,7 +2,7 @@ use crate::resources::common_field::CommonField;
 use crate::resources::custom_field::CustomField;
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, PartialEq)]
 pub struct Object {
     pub id: i32,
     pub project: CommonField,
@@ -23,7 +23,7 @@ pub struct Object {
     pub closed_on: Option<String>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, PartialEq)]
 pub struct Issue {
     pub issue: Object,
 }

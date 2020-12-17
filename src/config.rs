@@ -1,7 +1,7 @@
 use std::env;
 use std::error;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Config {}
 
 impl Config {

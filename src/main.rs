@@ -1,9 +1,8 @@
+mod backend;
 mod cli;
 mod config;
 mod resources;
 mod utils;
-
-use resources::issue::Issue;
 
 use crate::cli::Cli;
 
@@ -11,14 +10,12 @@ use crate::cli::Cli;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = Cli::from_args();
 
-    let _command = utils::command::extract_command(&matches);
+    let command = utils::command::extract_command(&matches);
     let sub_command = utils::command::extract_subcommand(&matches);
     let arg = utils::command::extract_arg(&matches);
 
-    // Build endpoint.
-    let endpoint = utils::endpoint::build_endpoint_url(sub_command, arg);
-    let response = reqwest::get(&endpoint).await?.text().await?;
-    let result: Issue = serde_json::from_str(&response)?;
+    let endpoint = utils::endpoint::build_endpoint(sub_command, arg)?;
+    let result = backend::issues::call_api(&endpoint, command).await?;
 
     println!("{:?}", result);
     Ok(())
