@@ -22,9 +22,9 @@ mod tests {
     }
 
     #[test]
-    #[should_panic(expected = "Invalid argument (os error 22)")]
     fn empty_env_variable() {
-        env::set_var("", "");
-        Config::get_env("BASE_URL".to_string()).unwrap();
+        env::set_var("BASE_URL", "");
+        let env_var = Config::get_env("BASE_URL".to_string()).unwrap();
+        assert!(env_var.is_empty());
     }
 }
