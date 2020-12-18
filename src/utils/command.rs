@@ -36,3 +36,20 @@ pub(crate) fn extract_arg<'a, 'b>(args: &'a ArgMatches) -> &'a str {
 
     arg
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use clap::{App, Arg};
+
+    #[test]
+    #[should_panic(expected = "called `Option::unwrap()` on a `None` value")]
+    fn test_extract_command() {
+        let test_matches = App::new("".to_string())
+            .subcommand(App::new("".to_string()).subcommand(
+                App::new("".to_string()).arg(Arg::new("").required(true).takes_value(true)),
+            ))
+            .get_matches();
+        assert!(extract_command(&test_matches) == "get");
+    }
+}
