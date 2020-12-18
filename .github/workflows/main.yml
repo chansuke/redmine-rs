@@ -15,6 +15,14 @@ jobs:
     - run: rustup component add rustfmt
     - run: cargo fmt --all -- --check
 
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: rustup update stable && rustup default stable
+    - run: rustup component add clippy
+    - run: cargo clippy --all-targets --all-features -- -D warnings
+
   test:
     runs-on: ${{ matrix.os }}
     env:
@@ -37,9 +45,6 @@ jobs:
           rust: stable
           other: x86_64-apple-ios
         - os: windows-latest
-          rust: stable-msvc
-          other: i686-pc-windows-msvc
-        - os: windows-latest
           rust: nightly-gnu
           other: i686-pc-windows-gnu
     steps:
@@ -55,14 +60,14 @@ jobs:
 
   success:
     name: bors build finished
-    needs: [rustfmt, test]
+    needs: [rustfmt, clippy, test]
     runs-on: ubuntu-latest
     if: "success() && github.event_name == 'push'"
     steps:
     - run: echo ok
   failure:
     name: bors build finished
-    needs: [rustfmt, test]
+    needs: [rustfmt, clippy, test]
     runs-on: ubuntu-latest
     if: "!success() && github.event_name == 'push'"
     steps:
