@@ -5,7 +5,7 @@ pub(crate) fn extract_command(args: &ArgMatches) -> &str {
     command
 }
 
-pub(crate) fn extract_subcommand<'a, 'b>(args: &'a ArgMatches) -> &'a str {
+pub(crate) fn extract_subcommand(args: &ArgMatches) -> &str {
     let mut sub_command = "";
 
     match args.subcommand() {
@@ -19,7 +19,7 @@ pub(crate) fn extract_subcommand<'a, 'b>(args: &'a ArgMatches) -> &'a str {
     sub_command
 }
 
-pub(crate) fn extract_arg<'a, 'b>(args: &'a ArgMatches) -> &'a str {
+pub(crate) fn extract_arg(args: &ArgMatches) -> &str {
     // Extract an argument of subcommand
     let mut arg = "";
 

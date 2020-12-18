@@ -10,9 +10,22 @@ pub(crate) async fn call_api(
 }
 
 async fn handle_request(endpoint: &str, command: &str) -> Result<String, reqwest::Error> {
-    let response = match command {
+   match command {
         "get" => reqwest::get(endpoint).await?.text().await,
         _ => unreachable!(),
-    };
-    response
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_call_api() {
+        let endpoint = "https://www.redmine.org/issues/1.json";
+        let command = "get";
+        let result = call_api(endpoint, command).await.unwrap();
+        assert!(result.issue.id == 1);
+        assert!(result.issue.custom_fields.len() == 2);
+    }
 }
