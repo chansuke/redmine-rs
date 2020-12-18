@@ -3,7 +3,7 @@ use crate::resources::custom_field::CustomField;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug, PartialEq)]
-pub struct Object {
+pub struct IssueObject {
     pub id: i32,
     pub project: CommonField,
     pub tracker: CommonField,
@@ -25,5 +25,5 @@ pub struct Object {
 
 #[derive(Deserialize, Debug, PartialEq)]
 pub struct Issue {
-    pub issue: Object,
+    pub issue: IssueObject,
 }
