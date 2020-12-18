@@ -10,7 +10,7 @@ pub(crate) async fn call_api(
 }
 
 async fn handle_request(endpoint: &str, command: &str) -> Result<String, reqwest::Error> {
-   match command {
+    match command {
         "get" => reqwest::get(endpoint).await?.text().await,
         _ => unreachable!(),
     }
