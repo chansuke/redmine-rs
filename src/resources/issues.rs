@@ -1,7 +1,7 @@
-use crate::resources::issue::Issue;
+use crate::resources::issue::IssueObject;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct Issues {
-    issues: Vec<Issue>,
+    issues: Vec<IssueObject>,
 }

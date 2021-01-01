@@ -1,19 +1,18 @@
 use crate::resources::issue::Issue;
+use crate::resources::issues::Issues;
 
-pub(crate) async fn call_api(
-    endpoint: &str,
-    command: &str,
-) -> Result<Issue, Box<dyn std::error::Error>> {
-    let response = handle_request(endpoint, command).await.unwrap();
+pub(crate) async fn get_issue(endpoint: &str) -> Result<Issue, Box<dyn std::error::Error>> {
+    let response = reqwest::get(endpoint).await?.text().await?;
     let result: Issue = serde_json::from_str(&response)?;
+    println!("{:?}", result);
     Ok(result)
 }
 
-async fn handle_request(endpoint: &str, command: &str) -> Result<String, reqwest::Error> {
-    match command {
-        "get" => reqwest::get(endpoint).await?.text().await,
-        _ => unreachable!(),
-    }
+pub(crate) async fn get_issues(endpoint: &str) -> Result<Issues, Box<dyn std::error::Error>> {
+    let response = reqwest::get(endpoint).await?.text().await?;
+    let result: Issues = serde_json::from_str(&response)?;
+    println!("{:?}", result);
+    Ok(result)
 }
 
 #[cfg(test)]
@@ -21,10 +20,9 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn test_call_api() {
+    async fn test_get_issue() {
         let endpoint = "https://www.redmine.org/issues/1.json";
-        let command = "get";
-        let result = call_api(endpoint, command).await.unwrap();
+        let result = get_issue(endpoint).await.unwrap();
         assert!(result.issue.id == 1);
         assert!(result.issue.custom_fields.len() == 2);
     }

@@ -5,7 +5,12 @@ pub(crate) fn build_endpoint(
     arg: &str,
 ) -> Result<String, Box<dyn std::error::Error>> {
     let baseurl = Config::get_env("BASE_URL".to_string())?;
-    let endpoint = format!("{}/{}/{}.json", baseurl, sub_command, arg);
+    let endpoint;
+    if arg.is_empty() {
+        endpoint = format!("{}/{}.json", baseurl, sub_command);
+    } else {
+        endpoint = format!("{}/{}/{}.json", baseurl, sub_command, arg);
+    }
     Ok(endpoint)
 }
 

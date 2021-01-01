@@ -29,10 +29,7 @@ impl Cli {
                 App::new("list")
                     .about("list things")
                     .setting(AppSettings::SubcommandRequiredElseHelp)
-                    .subcommand(
-                        App::new("issues")
-                            .about("show the list of issue")
-                    ),
+                    .subcommand(App::new("issues").about("show the list of issue")),
             )
             .get_matches();
         matches

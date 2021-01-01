@@ -12,26 +12,26 @@ pub(crate) fn extract_subcommand(args: &ArgMatches) -> &str {
         Some(("get", get_matches)) => {
             sub_command = get_matches.subcommand_name().unwrap();
         }
+        Some(("list", get_matches)) => {
+            sub_command = get_matches.subcommand_name().unwrap();
+        }
         None => println!("No subcommand was used"), // If no subcommand was used it'll match the tuple ("", None)
-        _ => unreachable!(), // If all subcommands are defined above, anything else is unreachabe!()
+        _ => {} // If all subcommands are defined above, anything else is unreachabe!()
     }
-
     sub_command
 }
 
 pub(crate) fn extract_arg(args: &ArgMatches) -> &str {
     // Extract an argument of subcommand
     let mut arg = "";
-
     match args.subcommand() {
-        Some(("get", get_matches)) => match get_matches.subcommand() {
-            Some(("issues", issues_matches)) => {
+        Some(("get", get_matches)) => {
+            if let Some(("issues", issues_matches)) = get_matches.subcommand() {
                 arg = issues_matches.value_of("id").unwrap();
             }
-            _ => unreachable!(),
-        },
+        }
         None => println!("No subcommand was used"),
-        _ => unreachable!(),
+        _ => {}
     }
 
     arg
