@@ -1,6 +1,7 @@
 use crate::resources::common_field::CommonField;
 use crate::resources::custom_field::CustomField;
 use serde::Deserialize;
+use chrono::{DateTime, Local};
 
 #[derive(Deserialize, Debug, PartialEq)]
 pub struct IssueObject {
@@ -18,8 +19,8 @@ pub struct IssueObject {
     pub done_ratio: i32,
     pub estimated_hours: Option<i32>,
     pub custom_fields: Vec<CustomField>,
-    pub created_on: String,
-    pub updated_on: String,
+    pub created_on: DateTime<Local>,
+    pub updated_on: DateTime<Local>,
     pub closed_on: Option<String>,
 }
 
