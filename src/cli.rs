@@ -23,6 +23,14 @@ impl Cli {
                                     .takes_value(true)
                                     .about("specify the number of your issue id"),
                             ),
+                    )
+                    .subcommand(
+                        App::new("projects").about("show projects").arg(
+                            Arg::new("id")
+                                .required(true)
+                                .takes_value(true)
+                                .about("specify the number of your project id"),
+                        ),
                     ),
             )
             .subcommand(
