@@ -1,7 +1,7 @@
 use crate::resources::common_field::CommonField;
 use crate::resources::custom_field::CustomField;
-use serde::Deserialize;
 use chrono::{DateTime, Local};
+use serde::Deserialize;
 
 #[derive(Deserialize, Debug, PartialEq)]
 pub struct IssueObject {

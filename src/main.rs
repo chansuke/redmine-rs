@@ -24,6 +24,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             _ => unreachable!(),
         },
+        "projects" => match command {
+            "get" => {
+                backend::projects::get_project(&endpoint).await?;
+            }
+            _ => unreachable!(),
+        },
         _ => unreachable!(),
     }
     Ok(())
