@@ -9,10 +9,10 @@ pub(crate) async fn get_project(endpoint: &str) -> Result<Project, Box<dyn std::
 }
 
 pub(crate) async fn get_projects(endpoint: &str) -> Result<Projects, Box<dyn std::error::Error>> {
-  let response = reqwest::get(endpoint).await?.text().await?;
-  let result: Projects = serde_json::from_str(&response)?;
-  println!("{:?}", result);
-  Ok(result)
+    let response = reqwest::get(endpoint).await?.text().await?;
+    let result: Projects = serde_json::from_str(&response)?;
+    println!("{:?}", result);
+    Ok(result)
 }
 
 #[cfg(test)]
