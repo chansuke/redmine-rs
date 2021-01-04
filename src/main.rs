@@ -28,6 +28,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "get" => {
                 backend::projects::get_project(&endpoint).await?;
             }
+            "list" => {
+                backend::projects::get_projects(&endpoint).await?;
+            }
             _ => unreachable!(),
         },
         _ => unreachable!(),
