@@ -4,3 +4,4 @@ pub mod custom_field;
 pub mod issue;
 pub mod issues;
 pub mod project;
+pub mod projects;

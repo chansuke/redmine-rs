@@ -6,7 +6,7 @@ pub struct ProjectObject {
     pub name: String,
     pub identifier: String,
     pub description: String,
-    pub homepage: String,
+    pub homepage: Option<String>,
     pub status: i32,
     pub created_on: DateTime<Local>,
     pub updated_on: DateTime<Local>,
