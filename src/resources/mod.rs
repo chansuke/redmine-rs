@@ -5,3 +5,4 @@ pub mod issue;
 pub mod issues;
 pub mod project;
 pub mod projects;
+pub mod user;

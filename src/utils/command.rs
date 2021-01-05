@@ -32,6 +32,9 @@ pub(crate) fn extract_arg(args: &ArgMatches) -> &str {
             if let Some(("projects", projects_matches)) = get_matches.subcommand() {
                 arg = projects_matches.value_of("id").unwrap();
             }
+            if let Some(("users", projects_matches)) = get_matches.subcommand() {
+                arg = projects_matches.value_of("id").unwrap();
+            }
         }
         None => println!("No subcommand was used"),
         _ => {}

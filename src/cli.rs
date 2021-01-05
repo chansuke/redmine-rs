@@ -31,6 +31,14 @@ impl Cli {
                                 .takes_value(true)
                                 .about("specify the number of your project id"),
                         ),
+                    )
+                    .subcommand(
+                        App::new("users").about("show users").arg(
+                            Arg::new("id")
+                                .required(true)
+                                .takes_value(true)
+                                .about("specify the number of your user id"),
+                        ),
                     ),
             )
             .subcommand(

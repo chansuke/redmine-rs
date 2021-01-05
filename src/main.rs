@@ -13,7 +13,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let sub_command = utils::command::extract_subcommand(&matches);
     let arg = utils::command::extract_arg(&matches);
     let endpoint = utils::endpoint::build_endpoint(sub_command, arg)?;
-
     match sub_command {
         "issues" => match command {
             "get" => {
@@ -30,6 +29,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             "list" => {
                 backend::projects::get_projects(&endpoint).await?;
+            }
+            _ => unreachable!(),
+        },
+        "users" => match command {
+            "get" => {
+                backend::users::get_user(&endpoint).await?;
             }
             _ => unreachable!(),
         },
