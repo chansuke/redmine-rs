@@ -3,5 +3,6 @@ use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct Projects {
-    projects: Vec<ProjectObject>,
+    pub projects: Vec<ProjectObject>,
+    pub total_count: i32,
 }
