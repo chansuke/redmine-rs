@@ -26,4 +26,11 @@ mod tests {
         assert!(result.project.name == "Redmine");
         assert!(result.project.status == 1);
     }
+
+    #[tokio::test]
+    async fn test_get_projects() {
+        let endpoint = "https://www.redmine.org/projects.json";
+        let result = get_projects(endpoint).await.unwrap();
+        assert!(result.total_count == 1);
+    }
 }
