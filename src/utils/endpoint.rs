@@ -14,6 +14,13 @@ pub(crate) fn build_endpoint(
     Ok(endpoint)
 }
 
+pub(crate) fn append_apikey_clause(endpoint: &str) -> Result<String, Box<dyn std::error::Error>> {
+    let apikey = Config::get_env("API_KEY".to_string())?;
+    let endpoint = format!("{}?key={}", endpoint, apikey);
+    println!("endpoint: {:?}", endpoint);
+    Ok(endpoint)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

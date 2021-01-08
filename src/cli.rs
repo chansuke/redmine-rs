@@ -46,7 +46,8 @@ impl Cli {
                     .about("list things")
                     .setting(AppSettings::SubcommandRequiredElseHelp)
                     .subcommand(App::new("issues").about("show the list of issue"))
-                    .subcommand(App::new("projects").about("show the list of project")),
+                    .subcommand(App::new("projects").about("show the list of project"))
+                    .subcommand(App::new("users").about("show the list of user")),
             )
             .get_matches();
         matches
