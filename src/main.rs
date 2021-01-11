@@ -2,9 +2,11 @@ mod backend;
 mod cli;
 mod config;
 mod resources;
+mod ui;
 mod utils;
 
 use crate::cli::Cli;
+use crate::ui::printer::Printer;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -18,7 +20,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     match sub_command {
         "issues" => match command {
             "get" => {
-                backend::issues::get_issue(&endpoint).await?;
+                let issue = backend::issues::get_issue(&endpoint).await?;
+                Printer::print_result(issue);
             }
             "list" => {
                 backend::issues::get_issues(&endpoint).await?;
