@@ -4,14 +4,12 @@ use crate::resources::issues::Issues;
 pub(crate) async fn get_issue(endpoint: &str) -> Result<Issue, Box<dyn std::error::Error>> {
     let response = reqwest::get(endpoint).await?.text().await?;
     let result: Issue = serde_json::from_str(&response)?;
-    println!("{:?}", result);
     Ok(result)
 }
 
 pub(crate) async fn get_issues(endpoint: &str) -> Result<Issues, Box<dyn std::error::Error>> {
     let response = reqwest::get(endpoint).await?.text().await?;
     let result: Issues = serde_json::from_str(&response)?;
-    println!("{:?}", result);
     Ok(result)
 }
 
