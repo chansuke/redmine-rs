@@ -24,7 +24,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 Printer::print_result(issue);
             }
             "list" => {
-                backend::issues::get_issues(&endpoint).await?;
+                let issues = backend::issues::get_issues(&endpoint).await?;
+                Printer::print_result(issues);
             }
             _ => unreachable!(),
         },
