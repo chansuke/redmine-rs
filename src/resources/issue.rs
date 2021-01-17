@@ -18,7 +18,7 @@ pub struct IssueObject {
     pub due_date: Option<String>,
     pub done_ratio: i32,
     pub estimated_hours: Option<i32>,
-    pub custom_fields: Vec<CustomField>,
+    pub custom_fields: Option<Vec<CustomField>>,
     pub created_on: DateTime<Local>,
     pub updated_on: DateTime<Local>,
     pub closed_on: Option<String>,
