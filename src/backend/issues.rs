@@ -22,6 +22,12 @@ mod tests {
         let endpoint = "https://www.redmine.org/issues/1.json";
         let result = get_issue(endpoint).await.unwrap();
         assert!(result.issue.id == 1);
-        assert!(result.issue.custom_fields.len() == 2);
+    }
+
+    #[tokio::test]
+    async fn test_get_issues() {
+        let endpoint = "https://www.redmine.org/issues.json";
+        let result = get_issues(endpoint).await.unwrap();
+        assert!(result.issues.len() == 25);
     }
 }
