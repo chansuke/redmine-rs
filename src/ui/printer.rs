@@ -31,7 +31,7 @@ impl Printer for Issue {
 impl Printer for Issues {
     fn print_result(self) {
         for issue in self.issues.into_iter() {
-            println!("");
+            println!();
             println!("ID: {}", Cyan.paint(issue.id.to_string()));
             println!("Author:  {}", Cyan.paint(issue.author.name));
             println!("Project: {}", Cyan.paint(issue.project.name));
