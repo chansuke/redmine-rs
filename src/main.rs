@@ -31,10 +31,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
         "projects" => match command {
             "get" => {
-                backend::projects::get_project(&endpoint).await?;
+                let project = backend::projects::get_project(&endpoint).await?;
+                Printer::print_result(project);
             }
             "list" => {
-                backend::projects::get_projects(&endpoint).await?;
+                let projects = backend::projects::get_projects(&endpoint).await?;
+                Printer::print_result(projects);
             }
             _ => unreachable!(),
         },
