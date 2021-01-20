@@ -2,6 +2,8 @@ use crate::resources::issue::Issue;
 use crate::resources::issues::Issues;
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
+use crate::resources::user::User;
+use crate::resources::users::Users;
 use ansi_term::Colour::Cyan;
 
 pub trait Printer {
@@ -93,6 +95,28 @@ impl Printer for Projects {
                         .replace("  ", "")
                 )
             );
+        }
+    }
+}
+
+impl Printer for User {
+    fn print_result(self) {
+        println!();
+        println!("ID: {}", Cyan.paint(self.user.id.to_string()));
+        println!("First Name: {}", Cyan.paint(self.user.firstname));
+        println!("Last Name: {}", Cyan.paint(self.user.lastname));
+        println!("Mail: {}", Cyan.paint(self.user.mail));
+    }
+}
+
+impl Printer for Users {
+    fn print_result(self) {
+        for user in self.users.into_iter() {
+            println!();
+            println!("ID: {}", Cyan.paint(user.id.to_string()));
+            println!("First Name: {}", Cyan.paint(user.firstname));
+            println!("Last Name: {}", Cyan.paint(user.lastname));
+            println!("Mail: {}", Cyan.paint(user.mail));
         }
     }
 }
