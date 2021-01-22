@@ -3,7 +3,7 @@
 
 `redmine-rs` is a client application that interfaces [Redmine](https://www.redmine.org/) server.
 
-# Settings
+## Settings
 Set your `API_KEY` and `BASE_URL` like following.
 
 `export BASE_URL="https://yourredmineurl.com"`
