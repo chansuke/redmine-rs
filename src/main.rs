@@ -40,6 +40,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             _ => unreachable!(),
         },
+        "memberships" => match command {
+            "list" => {
+                let memberships = backend::memberships::get_memberships(&endpoint).await?;
+                Printer::print_result(memberships);
+            }
+            _ => unreachable!(),
+        },
         "users" => match command {
             "get" => {
                 let user = backend::users::get_user(&endpoint).await?;
