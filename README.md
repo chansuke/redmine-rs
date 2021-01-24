@@ -10,4 +10,4 @@ Set your `API_KEY` and `BASE_URL` and `PROJECT` like following.
 
 `export API_KEY="apikeyofyourredmineserver"`
 
-`export PROJECT="youprojectname"`
+`export PROJECT="yourprojectname"`
