@@ -1,5 +1,6 @@
 use crate::resources::issue::Issue;
 use crate::resources::issues::Issues;
+use crate::resources::memberships::Memberships;
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
 use crate::resources::user::User;
@@ -95,6 +96,18 @@ impl Printer for Projects {
                         .replace("  ", "")
                 )
             );
+        }
+    }
+}
+
+impl Printer for Memberships {
+    fn print_result(self) {
+        for membership in self.memberships.into_iter() {
+            println!();
+            println!("ID: {}", Cyan.paint(membership.id.to_string()));
+            println!("Project Name: {}", Cyan.paint(membership.project.name));
+            println!("User Name: {}", Cyan.paint(membership.user.name));
+            println!("Role: {}", Cyan.paint(&membership.roles[0].name));
         }
     }
 }

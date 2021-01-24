@@ -3,6 +3,7 @@ pub mod common_field;
 pub mod custom_field;
 pub mod issue;
 pub mod issues;
+pub mod memberships;
 pub mod project;
 pub mod projects;
 pub mod user;

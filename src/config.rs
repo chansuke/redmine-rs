@@ -16,9 +16,15 @@ mod tests {
     use super::*;
 
     #[test]
-    fn get_env_variable() {
+    fn get_baseurl_env() {
         env::set_var("BASE_URL", "https://test.redmine.org");
         assert!(Config::get_env("BASE_URL".to_string()).unwrap() == "https://test.redmine.org");
+    }
+
+    #[test]
+    fn get_project_env() {
+        env::set_var("PROJECT", "redmine");
+        assert!(Config::get_env("PROJECT".to_string()).unwrap() == "redmine");
     }
 
     #[test]
