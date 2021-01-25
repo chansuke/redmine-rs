@@ -1,6 +1,7 @@
 use crate::resources::issue::Issue;
 use crate::resources::issues::Issues;
 use crate::resources::memberships::Memberships;
+use crate::resources::news::News;
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
 use crate::resources::user::User;
@@ -130,6 +131,30 @@ impl Printer for Users {
             println!("First Name: {}", Cyan.paint(user.firstname));
             println!("Last Name: {}", Cyan.paint(user.lastname));
             println!("Mail: {}", Cyan.paint(user.mail));
+        }
+    }
+}
+
+impl Printer for News {
+    fn print_result(self) {
+        for news in self.news.into_iter() {
+            println!();
+            println!("ID: {}", Cyan.paint(news.id.to_string()));
+            println!("Project Name: {}", Cyan.paint(news.project.name));
+            println!("Author: {}", Cyan.paint(news.author.name));
+            println!("Title: {}", Cyan.paint(news.title));
+            println!("Summary: {}", Cyan.paint(news.summary));
+            println!(
+                "Description: {}",
+                Cyan.paint(
+                    news.description
+                        .replace("\r\n", "")
+                        .replace("\t\t", "")
+                        .replace("\n", "")
+                        .replace("\\", "")
+                        .replace("  ", "")
+                )
+            );
         }
     }
 }

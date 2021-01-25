@@ -58,6 +58,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             _ => unreachable!(),
         },
+        "news" => match command {
+            "list" => {
+                let news = backend::news::get_news(&endpoint).await?;
+                Printer::print_result(news);
+            }
+            _ => unreachable!(),
+        },
         _ => unreachable!(),
     }
     Ok(())
