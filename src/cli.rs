@@ -50,7 +50,8 @@ impl Cli {
                     .subcommand(App::new("users").about("show the list of user"))
                     .subcommand(
                         App::new("memberships").about("show the list of mebership of your project"),
-                    ),
+                    )
+                    .subcommand(App::new("news").about("show the list of news")),
             )
             .get_matches();
         matches
