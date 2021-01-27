@@ -1,4 +1,5 @@
 use crate::resources::common_field::CommonField;
+use chrono::{DateTime, Local};
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -11,5 +12,5 @@ pub struct Attachment {
     content_url: String,
     thumbnail_url: String,
     author: CommonField,
-    created_on: String,
+    created_on: DateTime<Local>,
 }

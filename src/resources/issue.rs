@@ -21,7 +21,7 @@ pub struct IssueObject {
     pub custom_fields: Option<Vec<CustomField>>,
     pub created_on: DateTime<Local>,
     pub updated_on: DateTime<Local>,
-    pub closed_on: Option<String>,
+    pub closed_on: Option<DateTime<Local>>,
 }
 
 #[derive(Deserialize, Debug, PartialEq)]
