@@ -1,7 +1,6 @@
 #![allow(unused_macros)]
-// TODO:
 macro_rules! decorate_text {
-    ($x:expr) => {
-        println!("{}", $x);
-    };
+    ($f:ident, $colour:expr, $fmt:expr, $($args:tt)*) => (
+        write!($f, "{}", $colour.paint(format!($fmt, $($args)*)))
+    )
 }
