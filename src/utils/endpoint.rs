@@ -1,9 +1,9 @@
-use crate::config::Config;
+use anyhow::Result;
 
-pub(crate) fn build_endpoint(
-    sub_command: &str,
-    arg: &str,
-) -> Result<String, Box<dyn std::error::Error>> {
+use crate::config::Config;
+use crate::RmError;
+
+pub(crate) fn build_endpoint(sub_command: &str, arg: &str) -> Result<String, RmError> {
     let baseurl = Config::get_env("BASE_URL".to_string())?;
     let project = Config::get_env("PROJECT".to_string())?;
     let endpoint;
@@ -17,7 +17,7 @@ pub(crate) fn build_endpoint(
     Ok(endpoint)
 }
 
-pub(crate) fn append_apikey_clause(endpoint: &str) -> Result<String, Box<dyn std::error::Error>> {
+pub(crate) fn append_apikey_clause(endpoint: &str) -> Result<String, RmError> {
     let apikey = Config::get_env("API_KEY".to_string())?;
     let endpoint = format!("{}?key={}", endpoint, apikey);
     Ok(endpoint)

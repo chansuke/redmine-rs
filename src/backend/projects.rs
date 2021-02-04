@@ -1,13 +1,16 @@
+use anyhow::Result;
+
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
+use crate::RmError;
 
-pub(crate) async fn get_project(endpoint: &str) -> Result<Project, Box<dyn std::error::Error>> {
+pub(crate) async fn get_project(endpoint: &str) -> Result<Project, RmError> {
     let response = reqwest::get(endpoint).await?.text().await?;
     let result: Project = serde_json::from_str(&response)?;
     Ok(result)
 }
 
-pub(crate) async fn get_projects(endpoint: &str) -> Result<Projects, Box<dyn std::error::Error>> {
+pub(crate) async fn get_projects(endpoint: &str) -> Result<Projects, RmError> {
     let response = reqwest::get(endpoint).await?.text().await?;
     let result: Projects = serde_json::from_str(&response)?;
     Ok(result)
