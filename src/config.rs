@@ -1,11 +1,14 @@
 use std::env;
-use std::error;
+
+use anyhow::Result;
+
+use crate::RmError;
 
 #[derive(Debug, PartialEq)]
 pub struct Config {}
 
 impl Config {
-    pub fn get_env(value: String) -> Result<String, Box<dyn error::Error>> {
+    pub fn get_env(value: String) -> Result<String, RmError> {
         let env_var = env::var(value)?;
         Ok(env_var)
     }

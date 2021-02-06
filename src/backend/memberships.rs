@@ -1,8 +1,9 @@
-use crate::resources::memberships::Memberships;
+use anyhow::Result;
 
-pub(crate) async fn get_memberships(
-    endpoint: &str,
-) -> Result<Memberships, Box<dyn std::error::Error>> {
+use crate::resources::memberships::Memberships;
+use crate::RmError;
+
+pub(crate) async fn get_memberships(endpoint: &str) -> Result<Memberships, RmError> {
     let response = reqwest::get(endpoint).await?.text().await?;
     let result: Memberships = serde_json::from_str(&response)?;
     Ok(result)

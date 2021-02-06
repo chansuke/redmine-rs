@@ -1,6 +1,9 @@
-use crate::resources::news::News;
+use anyhow::Result;
 
-pub(crate) async fn get_news(endpoint: &str) -> Result<News, Box<dyn std::error::Error>> {
+use crate::resources::news::News;
+use crate::RmError;
+
+pub(crate) async fn get_news(endpoint: &str) -> Result<News, RmError> {
     let response = reqwest::get(endpoint).await?.text().await?;
     let result: News = serde_json::from_str(&response)?;
     Ok(result)

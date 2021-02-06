@@ -1,15 +1,19 @@
 mod backend;
 mod cli;
 mod config;
+mod errors;
 mod resources;
 mod ui;
 mod utils;
 
+use anyhow::Result;
+
 use crate::cli::Cli;
+use crate::errors::RmError;
 use crate::ui::printer::Printer;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<(), RmError> {
     let matches = Cli::from_args();
     let command = utils::command::extract_command(&matches);
     let sub_command = utils::command::extract_subcommand(&matches);
