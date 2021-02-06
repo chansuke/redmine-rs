@@ -1,5 +1,5 @@
 # redmine-rs
-![CI](https://github.com/chansuke/redmine-rs/workflows/CI/badge.svg)
+![Cargo Test](https://github.com/chansuke/redmine-rs/workflows/Cargo%20Test/badge.svg) ![License](https://img.shields.io/badge/license-MIT%20or%20Apache%202%20-orange)
 
 `redmine-rs` is a client application that interfaces [Redmine](https://www.redmine.org/) server.
 
