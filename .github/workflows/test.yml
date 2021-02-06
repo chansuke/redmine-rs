@@ -43,18 +43,3 @@ jobs:
     - run: sudo apt update -y && sudo apt install gcc-multilib libsecret-1-0 libsecret-1-dev -y
       if: matrix.os == 'ubuntu-latest'
     - run: cargo test
-
-  success:
-    name: bors build finished
-    needs: [test]
-    runs-on: ubuntu-latest
-    if: "success() && github.event_name == 'push'"
-    steps:
-    - run: echo ok
-  failure:
-    name: bors build finished
-    needs: [test]
-    runs-on: ubuntu-latest
-    if: "!success() && github.event_name == 'push'"
-    steps:
-    - run: exit 1
