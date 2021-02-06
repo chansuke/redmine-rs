@@ -9,6 +9,7 @@ impl Cli {
             .version(crate_version!())
             .about(crate_description!())
             .author(crate_authors!())
+            .setting(AppSettings::ArgRequiredElseHelp)
             .subcommand(
                 App::new("get")
                     .about("show things")
