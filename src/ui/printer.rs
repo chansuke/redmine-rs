@@ -4,6 +4,7 @@ use crate::resources::memberships::Memberships;
 use crate::resources::news::News;
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
+use crate::resources::trackers::Trackers;
 use crate::resources::user::User;
 use crate::resources::users::Users;
 use ansi_term::Colour::Cyan;
@@ -155,6 +156,16 @@ impl Printer for News {
                         .replace("  ", "")
                 )
             );
+        }
+    }
+}
+
+impl Printer for Trackers {
+    fn print_result(self) {
+        for tracker in self.trackers.into_iter() {
+            println!();
+            println!("ID: {}", Cyan.paint(tracker.id.to_string()));
+            println!("Name: {}", Cyan.paint(tracker.name.to_string()));
         }
     }
 }

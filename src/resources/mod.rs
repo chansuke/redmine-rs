@@ -7,5 +7,6 @@ pub mod memberships;
 pub mod news;
 pub mod project;
 pub mod projects;
+pub mod trackers;
 pub mod user;
 pub mod users;
