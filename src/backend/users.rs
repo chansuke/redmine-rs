@@ -15,3 +15,5 @@ pub(crate) async fn get_users(endpoint: &str) -> Result<Users, RmError> {
     let result: Users = serde_json::from_str(&response)?;
     Ok(result)
 }
+
+//TODO: write test

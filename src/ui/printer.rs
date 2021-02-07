@@ -1,13 +1,16 @@
+use ansi_term::Colour::Cyan;
+
 use crate::resources::issue::Issue;
 use crate::resources::issues::Issues;
 use crate::resources::memberships::Memberships;
 use crate::resources::news::News;
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
+use crate::resources::role::Role;
+use crate::resources::roles::Roles;
 use crate::resources::trackers::Trackers;
 use crate::resources::user::User;
 use crate::resources::users::Users;
-use ansi_term::Colour::Cyan;
 
 pub trait Printer {
     fn print_result(self);
@@ -166,6 +169,24 @@ impl Printer for Trackers {
             println!();
             println!("ID: {}", Cyan.paint(tracker.id.to_string()));
             println!("Name: {}", Cyan.paint(tracker.name.to_string()));
+        }
+    }
+}
+
+impl Printer for Role {
+    fn print_result(self) {
+        println!();
+        println!("ID: {}", Cyan.paint(self.role.id.to_string()));
+        println!("Name: {}", Cyan.paint(self.role.name));
+    }
+}
+
+impl Printer for Roles {
+    fn print_result(self) {
+        for role in self.roles.into_iter() {
+            println!();
+            println!("ID: {}", Cyan.paint(role.id.to_string()));
+            println!("Name: {}", Cyan.paint(role.name));
         }
     }
 }

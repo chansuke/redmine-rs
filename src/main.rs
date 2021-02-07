@@ -76,6 +76,17 @@ async fn main() -> Result<(), RmError> {
             }
             _ => unreachable!(),
         },
+        "roles" => match command {
+            "get" => {
+                let role = backend::roles::get_role(&endpoint).await?;
+                Printer::print_result(role);
+            }
+            "list" => {
+                let roles = backend::roles::get_roles(&endpoint).await?;
+                Printer::print_result(roles);
+            }
+            _ => unreachable!(),
+        },
         _ => unreachable!(),
     }
     Ok(())
