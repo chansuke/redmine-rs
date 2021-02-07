@@ -69,6 +69,13 @@ async fn main() -> Result<(), RmError> {
             }
             _ => unreachable!(),
         },
+        "trackers" => match command {
+            "list" => {
+                let trackers = backend::trackers::get_trackers(&endpoint).await?;
+                Printer::print_result(trackers);
+            }
+            _ => unreachable!(),
+        },
         _ => unreachable!(),
     }
     Ok(())
