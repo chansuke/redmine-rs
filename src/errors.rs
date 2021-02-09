@@ -4,7 +4,7 @@ use thiserror::Error;
 pub enum RmError {
     #[error("failed to deserialize an instance from a string of JSON text: {0}")]
     Serde(#[from] serde_json::Error),
-    #[error("failed to read environment variable: {0}")]
+    #[error("failed to read environment variable:")]
     VarError(#[from] std::env::VarError),
     #[error("failed to format the given variables: {0}")]
     FormatError(#[from] std::fmt::Error),
