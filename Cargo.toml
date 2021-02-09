@@ -1,5 +1,10 @@
 [package]
 name = "redmine-rs"
+homepage = "https://github.com/chansuke/redmine-rs"
+documentation = "https://github.com/chansuke/redmine-rs"
+repository = "https://github.com/chansuke/redmine-rs"
+keywords = ["redmine", "cli", "terminal"]
+categories = ["command-line-utilities"]
 version = "0.1.0"
 authors = ["chansuke <chansuke@georepublic.de>"]
 description = "This is a command line interface for Redmine"
@@ -27,3 +32,8 @@ chrono = { version = "0.4", features = ["serde"] }
 ansi_term = "0.12.1"
 thiserror = "1.0.23"
 anyhow = "1.0"
+
+[[bin]]
+bench = false
+path = "src/main.rs"
+name = "redmine"
