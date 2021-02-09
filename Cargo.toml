@@ -16,7 +16,7 @@ include = [
 
 [dependencies]
 clap = "3.0.0-beta.2"
-futures = "*"
+futures = "0.3.8"
 structopt = "0.3.13"
 serde = { version = "1.0", features = ["derive"] }
 reqwest = { version = "0.10", features = ["json"] }
