@@ -22,7 +22,7 @@ impl Cli {
                                 Arg::new("id")
                                     .required(true)
                                     .takes_value(true)
-                                    .about("specify the number of your issue id"),
+                                    .about("display the issue of given id"),
                             ),
                     )
                     .subcommand(
@@ -30,7 +30,7 @@ impl Cli {
                             Arg::new("id")
                                 .required(true)
                                 .takes_value(true)
-                                .about("specify the number of your project id"),
+                                .about("display the project of given id"),
                         ),
                     )
                     .subcommand(
@@ -38,7 +38,15 @@ impl Cli {
                             Arg::new("id")
                                 .required(true)
                                 .takes_value(true)
-                                .about("specify the number of your user id"),
+                                .about("display the user of given id"),
+                        ),
+                    )
+                    .subcommand(
+                        App::new("roles").about("show roles").arg(
+                            Arg::new("id")
+                                .required(true)
+                                .takes_value(true)
+                                .about("display the role of given id"),
                         ),
                     ),
             )
@@ -53,7 +61,8 @@ impl Cli {
                         App::new("memberships").about("show the list of mebership of your project"),
                     )
                     .subcommand(App::new("news").about("show the list of news"))
-                    .subcommand(App::new("trackers").about("show the list of trackers")),
+                    .subcommand(App::new("trackers").about("show the list of trackers"))
+                    .subcommand(App::new("roles").about("show the list of roles")),
             )
             .get_matches();
         matches
