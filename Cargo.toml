@@ -5,6 +5,14 @@ authors = ["chansuke <chansuke@georepublic.de>"]
 description = "This is a command line interface for Redmine"
 edition = "2018"
 license = "MIT OR Apache-2.0"
+include = [
+    "*.rs",
+    "**/*.rs",
+    "**/**/*.rs",
+    "Cargo.toml",
+    "LICENSE-*",
+    "README.md",
+]
 
 [dependencies]
 clap = "3.0.0-beta.2"
