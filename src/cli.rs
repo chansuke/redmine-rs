@@ -64,6 +64,20 @@ impl Cli {
                     .subcommand(App::new("trackers").about("show the list of trackers"))
                     .subcommand(App::new("roles").about("show the list of roles")),
             )
+            .subcommand(
+                App::new("post")
+                    .about("post things")
+                    .setting(AppSettings::SubcommandRequiredElseHelp)
+                    .subcommand(
+                        App::new("issues").about("post the issue").arg(
+                            Arg::new("issue_args")
+                                .required(true)
+                                .multiple(true)
+                                .takes_value(true)
+                                .about("Subject and description of an Issue"),
+                        ),
+                    ),
+            )
             .get_matches();
         matches
     }

@@ -15,6 +15,9 @@ pub(crate) fn extract_subcommand(args: &ArgMatches) -> &str {
         Some(("list", get_matches)) => {
             sub_command = get_matches.subcommand_name().unwrap();
         }
+        Some(("post", get_matches)) => {
+            sub_command = get_matches.subcommand_name().unwrap();
+        }
         None => println!("No subcommand was used"), // If no subcommand was used it'll match the tuple ("", None)
         _ => {} // If all subcommands are defined above, anything else is unreachabe!()
     }
@@ -41,6 +44,22 @@ pub(crate) fn extract_arg(args: &ArgMatches) -> &str {
     }
 
     arg
+}
+
+pub(crate) fn extract_args(args: &ArgMatches) -> Vec<&str> {
+    // Extract an arguments of subcommand
+    let mut issueargs = vec![];
+    match args.subcommand() {
+        Some(("post", get_matches)) => {
+            if let Some(("issues", projects_matches)) = get_matches.subcommand() {
+                issueargs = projects_matches.values_of("issue_args").unwrap().collect();
+            }
+        }
+        None => println!("No subcommand was used"),
+        _ => {}
+    }
+
+    issueargs
 }
 
 #[cfg(test)]

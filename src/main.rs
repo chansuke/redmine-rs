@@ -18,6 +18,7 @@ async fn main() -> Result<(), RmError> {
     let command = utils::command::extract_command(&matches);
     let sub_command = utils::command::extract_subcommand(&matches);
     let arg = utils::command::extract_arg(&matches);
+    let args = utils::command::extract_args(&matches);
     let endpoint = utils::endpoint::build_endpoint(sub_command, arg)?;
     let endpoint_with_apikey = utils::endpoint::append_apikey_clause(&endpoint)?;
 
@@ -30,6 +31,10 @@ async fn main() -> Result<(), RmError> {
             "list" => {
                 let issues = backend::issues::get_issues(&endpoint).await?;
                 Printer::print_result(issues);
+            }
+            "post" => {
+                let issue = backend::issues::post_issue(&endpoint, args).await?;
+                Printer::print_result(issue);
             }
             _ => unreachable!(),
         },
