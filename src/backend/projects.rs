@@ -1,17 +1,49 @@
 use anyhow::Result;
+use reqwest::header::{HeaderMap, HeaderValue};
+use reqwest::Client;
 
 use crate::resources::project::Project;
 use crate::resources::projects::Projects;
-use crate::RmError;
+use crate::{config::Config, RmError};
 
 pub(crate) async fn get_project(endpoint: &str) -> Result<Project, RmError> {
-    let response = reqwest::get(endpoint).await?.text().await?;
+    let mut headers = HeaderMap::new();
+
+    if let Ok(api_key) = Config::get_env("API_KEY".to_string()) {
+        headers.insert(
+            "X-Redmine-API-Key",
+            HeaderValue::from_str(&api_key).unwrap(),
+        );
+    }
+
+    let response = Client::new()
+        .get(endpoint)
+        .headers(headers)
+        .send()
+        .await?
+        .text()
+        .await?;
     let result: Project = serde_json::from_str(&response)?;
     Ok(result)
 }
 
 pub(crate) async fn get_projects(endpoint: &str) -> Result<Projects, RmError> {
-    let response = reqwest::get(endpoint).await?.text().await?;
+    let mut headers = HeaderMap::new();
+
+    if let Ok(api_key) = Config::get_env("API_KEY".to_string()) {
+        headers.insert(
+            "X-Redmine-API-Key",
+            HeaderValue::from_str(&api_key).unwrap(),
+        );
+    }
+
+    let response = Client::new()
+        .get(endpoint)
+        .headers(headers)
+        .send()
+        .await?
+        .text()
+        .await?;
     let result: Projects = serde_json::from_str(&response)?;
     Ok(result)
 }
