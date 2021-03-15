@@ -13,7 +13,7 @@ use crate::errors::RmError;
 use crate::ui::printer::Printer;
 
 #[tokio::main]
-async fn main() -> Result<(), RmError> {
+async fn main() -> Result<()> {
     let matches = Cli::from_args();
     let command = utils::command::extract_command(&matches);
     let sub_command = utils::command::extract_subcommand(&matches);
