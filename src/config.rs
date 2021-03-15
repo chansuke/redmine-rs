@@ -20,20 +20,22 @@ mod tests {
 
     #[test]
     fn get_baseurl_env() {
-        env::set_var("BASE_URL", "https://test.redmine.org");
-        assert!(Config::get_env("BASE_URL".to_string()).unwrap() == "https://test.redmine.org");
+        env::set_var("REDMINE_BASE_URL", "https://test.redmine.org");
+        assert!(
+            Config::get_env("REDMINE_BASE_URL".to_string()).unwrap() == "https://test.redmine.org"
+        );
     }
 
     #[test]
     fn get_project_env() {
-        env::set_var("PROJECT", "redmine");
-        assert!(Config::get_env("PROJECT".to_string()).unwrap() == "redmine");
+        env::set_var("REDMINE_PROJECT", "redmine");
+        assert!(Config::get_env("REDMINE_PROJECT".to_string()).unwrap() == "redmine");
     }
 
     #[test]
     fn empty_env_variable() {
-        env::set_var("BASE_URL", "");
-        let env_var = Config::get_env("BASE_URL".to_string()).unwrap();
+        env::set_var("REDMINE_BASE_URL", "");
+        let env_var = Config::get_env("REDMINE_BASE_URL".to_string()).unwrap();
         assert!(env_var.is_empty());
     }
 }

@@ -9,7 +9,7 @@ use crate::{config::Config, RmError};
 pub(crate) async fn get_project(endpoint: &str) -> Result<Project, RmError> {
     let mut headers = HeaderMap::new();
 
-    if let Ok(api_key) = Config::get_env("API_KEY".to_string()) {
+    if let Ok(api_key) = Config::get_env("REDMINE_API_KEY".to_string()) {
         headers.insert(
             "X-Redmine-API-Key",
             HeaderValue::from_str(&api_key).unwrap(),
@@ -30,7 +30,7 @@ pub(crate) async fn get_project(endpoint: &str) -> Result<Project, RmError> {
 pub(crate) async fn get_projects(endpoint: &str) -> Result<Projects, RmError> {
     let mut headers = HeaderMap::new();
 
-    if let Ok(api_key) = Config::get_env("API_KEY".to_string()) {
+    if let Ok(api_key) = Config::get_env("REDMINE_API_KEY".to_string()) {
         headers.insert(
             "X-Redmine-API-Key",
             HeaderValue::from_str(&api_key).unwrap(),
