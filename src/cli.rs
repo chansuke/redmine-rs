@@ -58,7 +58,8 @@ impl Cli {
                     .subcommand(App::new("projects").about("show the list of project"))
                     .subcommand(App::new("users").about("show the list of user"))
                     .subcommand(
-                        App::new("memberships").about("show the list of mebership of your project"),
+                        App::new("memberships")
+                            .about("show the list of membership of your project"),
                     )
                     .subcommand(App::new("news").about("show the list of news"))
                     .subcommand(App::new("trackers").about("show the list of trackers"))
