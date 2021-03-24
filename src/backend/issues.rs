@@ -1,4 +1,5 @@
 use anyhow::Result;
+use reqwest::header::{HeaderMap, HeaderValue};
 use reqwest::Client;
 
 use crate::resources::issues::Issues;
@@ -9,26 +10,56 @@ use crate::{
 };
 
 pub(crate) async fn get_issue(endpoint: &str) -> Result<Issue, RmError> {
-    let response = reqwest::get(endpoint).await?.text().await?;
+    let mut headers = HeaderMap::new();
+
+    if let Ok(api_key) = Config::get_env("REDMINE_API_KEY".to_string()) {
+        headers.insert(
+            "X-Redmine-API-Key",
+            HeaderValue::from_str(&api_key).unwrap(),
+        );
+    }
+
+    let response = Client::new()
+        .get(endpoint)
+        .headers(headers)
+        .send()
+        .await?
+        .text()
+        .await?;
     let result: Issue = serde_json::from_str(&response)?;
     Ok(result)
 }
 
 pub(crate) async fn get_issues(endpoint: &str) -> Result<Issues, RmError> {
-    let response = reqwest::get(endpoint).await?.text().await?;
+    let mut headers = HeaderMap::new();
+
+    if let Ok(api_key) = Config::get_env("REDMINE_API_KEY".to_string()) {
+        headers.insert(
+            "X-Redmine-API-Key",
+            HeaderValue::from_str(&api_key).unwrap(),
+        );
+    }
+
+    let response = Client::new()
+        .get(endpoint)
+        .headers(headers)
+        .send()
+        .await?
+        .text()
+        .await?;
     let result: Issues = serde_json::from_str(&response)?;
     Ok(result)
 }
 
 pub(crate) async fn post_issue(endpoint: &str, args: Vec<&str>) -> Result<Issue, RmError> {
-    let project = Config::get_env("PROJECT".to_string())?;
+    let project = Config::get_env("REDMINE_PROJECT".to_string())?;
 
     let issue_object = PostIssueObject {
         project_id: &project,
         subject: args[0],
         description: Some(args[1]),
     };
-    let api_key = Config::get_env("API_KEY".to_string())?;
+    let api_key = Config::get_env("REDMINE_API_KEY".to_string())?;
     let issue = PostIssue {
         issue: issue_object,
     };
