@@ -1,5 +1,5 @@
 # redmine-rs
-![Cargo Test](https://github.com/chansuke/redmine-rs/workflows/Cargo%20Test/badge.svg) ![License](https://img.shields.io/badge/license-MIT%20or%20Apache%202%20-orange)
+![Cargo Test](https://github.com/chansuke/redmine-rs/workflows/Cargo%20Test/badge.svg) ![License](https://img.shields.io/badge/license-MIT%20or%20Apache%202%20-orange) [![redmine-rs at crates.io](https://img.shields.io/crates/v/redmine-rs.svg)](https://crates.io/crates/redmine-rs)
 
 `redmine-rs` is a client application that interfaces with a [Redmine](https://www.redmine.org/) server.
 
