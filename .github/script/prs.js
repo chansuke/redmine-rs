@@ -13,7 +13,7 @@ module.exports = async ({github, path}) => {
     const { data } = await github.pulls.list({
         owner: 'chansuke',
         repo: 'redmine-rs',
-        base: 'develop',
+        base: 'main',
         state: 'closed',
     })
     const res = data.map(d => {
