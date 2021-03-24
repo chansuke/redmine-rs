@@ -5,7 +5,7 @@ documentation = "https://github.com/chansuke/redmine-rs"
 repository = "https://github.com/chansuke/redmine-rs"
 keywords = ["redmine", "cli", "terminal"]
 categories = ["command-line-utilities"]
-version = "0.2.1"
+version = "0.2.2"
 authors = ["chansuke <chansuke@georepublic.de>"]
 description = "This is a command line interface for Redmine"
 edition = "2018"
@@ -36,4 +36,4 @@ anyhow = "1.0"
 [[bin]]
 bench = false
 path = "src/main.rs"
-name = "redmine"
+name = "redmine-rs"
