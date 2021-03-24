@@ -6,6 +6,7 @@ use crate::resources::project::Project;
 use crate::resources::projects::Projects;
 use crate::{config::Config, RmError};
 
+/// Get single project
 pub(crate) async fn get_project(endpoint: &str) -> Result<Project, RmError> {
     let mut headers = HeaderMap::new();
 
@@ -27,6 +28,7 @@ pub(crate) async fn get_project(endpoint: &str) -> Result<Project, RmError> {
     Ok(result)
 }
 
+/// Get projects
 pub(crate) async fn get_projects(endpoint: &str) -> Result<Projects, RmError> {
     let mut headers = HeaderMap::new();
 
