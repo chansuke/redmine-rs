@@ -2,6 +2,8 @@ use crate::resources::common_field::CommonField;
 use chrono::{DateTime, Local};
 use serde::Deserialize;
 
+// Response model for the attachments API, which no command uses yet.
+#[allow(dead_code)]
 #[derive(Debug, Deserialize)]
 pub struct Attachment {
     id: i32,
