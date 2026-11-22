@@ -10,7 +10,7 @@ module.exports = async ({github, path}) => {
         });
     console.log(logs);
 
-    const { data } = await github.pulls.list({
+    const { data } = await github.rest.pulls.list({
         owner: 'chansuke',
         repo: 'redmine-rs',
         base: 'main',
