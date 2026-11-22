@@ -30,6 +30,7 @@ mod tests {
     #[test]
     fn test_build_endpoint() {
         env::set_var("REDMINE_BASE_URL", "https://test.redmine.org");
+        env::set_var("REDMINE_PROJECT", "redmine");
         assert!(
             build_endpoint("issues", "199").unwrap() == "https://test.redmine.org/issues/199.json"
         );

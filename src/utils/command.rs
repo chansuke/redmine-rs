@@ -74,7 +74,7 @@ mod tests {
             .subcommand(App::new("".to_string()).subcommand(
                 App::new("".to_string()).arg(Arg::new("").required(true).takes_value(true)),
             ))
-            .get_matches();
+            .get_matches_from(vec!["redmine-rs"]);
         assert!(extract_command(&test_matches) == "get");
     }
 }

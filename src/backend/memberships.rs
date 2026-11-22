@@ -17,6 +17,10 @@ mod tests {
     async fn test_get_memberships() {
         let endpoint = "https://www.redmine.org/projects/redmine/memberships.json";
         let result = get_memberships(endpoint).await.unwrap();
-        assert!(result.memberships.len() == 20);
+        // The member count changes over time, so compare it with the count the API reports.
+        assert_eq!(result.memberships.len() as i32, result.total_count);
+        let founder = &result.memberships[0];
+        assert_eq!(founder.user.name, "Jean-Philippe Lang");
+        assert_eq!(founder.roles[0].name, "Administrator");
     }
 }

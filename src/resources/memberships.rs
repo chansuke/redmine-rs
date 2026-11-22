@@ -12,4 +12,7 @@ pub struct MembershipObject {
 #[derive(Deserialize, Debug)]
 pub struct Memberships {
     pub memberships: Vec<MembershipObject>,
+    // Part of the API response; only the tests read it so far.
+    #[allow(dead_code)]
+    pub total_count: i32,
 }

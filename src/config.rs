@@ -18,24 +18,26 @@ impl Config {
 mod tests {
     use super::*;
 
+    // Each test uses its own variable, because tests run in parallel in one process.
     #[test]
     fn get_baseurl_env() {
-        env::set_var("REDMINE_BASE_URL", "https://test.redmine.org");
+        env::set_var("REDMINE_RS_TEST_SET_URL", "https://test.redmine.org");
         assert!(
-            Config::get_env("REDMINE_BASE_URL".to_string()).unwrap() == "https://test.redmine.org"
+            Config::get_env("REDMINE_RS_TEST_SET_URL".to_string()).unwrap()
+                == "https://test.redmine.org"
         );
     }
 
     #[test]
     fn get_project_env() {
-        env::set_var("REDMINE_PROJECT", "redmine");
-        assert!(Config::get_env("REDMINE_PROJECT".to_string()).unwrap() == "redmine");
+        env::set_var("REDMINE_RS_TEST_SET_PROJECT", "redmine");
+        assert!(Config::get_env("REDMINE_RS_TEST_SET_PROJECT".to_string()).unwrap() == "redmine");
     }
 
     #[test]
     fn empty_env_variable() {
-        env::set_var("REDMINE_BASE_URL", "");
-        let env_var = Config::get_env("REDMINE_BASE_URL".to_string()).unwrap();
+        env::set_var("REDMINE_RS_TEST_EMPTY", "");
+        let env_var = Config::get_env("REDMINE_RS_TEST_EMPTY".to_string()).unwrap();
         assert!(env_var.is_empty());
     }
 }
