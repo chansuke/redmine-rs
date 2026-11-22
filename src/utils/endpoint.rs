@@ -6,14 +6,13 @@ use crate::RmError;
 pub(crate) fn build_endpoint(sub_command: &str, arg: &str) -> Result<String, RmError> {
     let baseurl = Config::get_env("REDMINE_BASE_URL".to_string())?;
     let project = Config::get_env("REDMINE_PROJECT".to_string())?;
-    let endpoint;
-    if arg.is_empty() && sub_command != "memberships" {
-        endpoint = format!("{}/{}.json", baseurl, sub_command);
+    let endpoint = if arg.is_empty() && sub_command != "memberships" {
+        format!("{}/{}.json", baseurl, sub_command)
     } else if sub_command == "memberships" {
-        endpoint = format!("{}/projects/{}/memberships.json", baseurl, project);
+        format!("{}/projects/{}/memberships.json", baseurl, project)
     } else {
-        endpoint = format!("{}/{}/{}.json", baseurl, sub_command, arg);
-    }
+        format!("{}/{}/{}.json", baseurl, sub_command, arg)
+    };
     Ok(endpoint)
 }
 
